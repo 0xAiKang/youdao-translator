@@ -1,0 +1,232 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "youdao-translate",
+  "title": "Youdao Translate",
+  "description": "输入即译的有道翻译：中英互译、段落翻译与 macOS 本地朗读。",
+  "icon": "translate.png",
+  "author": "0xAiKang",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "youdao_translate",
+      "title": "Translate",
+      "subtitle": "Youdao",
+      "description": "输入即译，中英互译与原文、译文朗读",
+      "mode": "view",
+      "arguments": [
+        {
+          "name": "text",
+          "type": "text",
+          "required": false,
+          "placeholder": "输入要翻译的文字"
+        }
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "app_key",
+      "type": "textfield",
+      "required": true,
+      "title": "APP Key",
+      "description": "You can get Youdao Translate APP code at https://ai.youdao.com/console/",
+      "placeholder": "Youdao Translate APP code"
+    },
+    {
+      "name": "app_secret",
+      "type": "password",
+      "required": true,
+      "title": "APP Secret",
+      "description": "You can get Youdao Translate APP secret at https://ai.youdao.com/console/",
+      "placeholder": "Youdao Translate APP Secret"
+    },
+    {
+      "name": "handle_annotation",
+      "type": "checkbox",
+      "required": false,
+      "title": "Handle Annotation",
+      "description": "You can decide whether you want to remove comments from the input text",
+      "placeholder": "Handle Annotation",
+      "label": "Allow Handle Annotation",
+      "default": false
+    },
+    {
+      "name": "translation_mode",
+      "type": "dropdown",
+      "required": false,
+      "title": "翻译方向",
+      "default": "auto_pair",
+      "description": "默认中英互译；其他语言请选择自定义，再修改下方语言。",
+      "data": [
+        {
+          "value": "auto_pair",
+          "title": "自动中英互译"
+        },
+        {
+          "value": "custom",
+          "title": "自定义语言"
+        }
+      ]
+    },
+    {
+      "name": "source_language",
+      "type": "dropdown",
+      "required": false,
+      "title": "自定义：源语言",
+      "default": "auto",
+      "description": "仅在自定义语言模式下生效。",
+      "data": [
+        {
+          "value": "auto",
+          "title": "自动识别"
+        },
+        {
+          "value": "zh-CHS",
+          "title": "中文"
+        },
+        {
+          "value": "en",
+          "title": "英文"
+        },
+        {
+          "value": "zh-CHT",
+          "title": "繁体中文"
+        },
+        {
+          "value": "ja",
+          "title": "日文"
+        },
+        {
+          "value": "ko",
+          "title": "韩文"
+        },
+        {
+          "value": "fr",
+          "title": "法文"
+        },
+        {
+          "value": "de",
+          "title": "德文"
+        },
+        {
+          "value": "es",
+          "title": "西班牙文"
+        },
+        {
+          "value": "ru",
+          "title": "俄文"
+        },
+        {
+          "value": "pt",
+          "title": "葡萄牙文"
+        },
+        {
+          "value": "it",
+          "title": "意大利文"
+        }
+      ]
+    },
+    {
+      "name": "target_language",
+      "type": "dropdown",
+      "required": false,
+      "title": "自定义：目标语言",
+      "default": "zh-CHS",
+      "description": "仅在自定义语言模式下生效。",
+      "data": [
+        {
+          "value": "zh-CHS",
+          "title": "中文"
+        },
+        {
+          "value": "en",
+          "title": "英文"
+        },
+        {
+          "value": "zh-CHT",
+          "title": "繁体中文"
+        },
+        {
+          "value": "ja",
+          "title": "日文"
+        },
+        {
+          "value": "ko",
+          "title": "韩文"
+        },
+        {
+          "value": "fr",
+          "title": "法文"
+        },
+        {
+          "value": "de",
+          "title": "德文"
+        },
+        {
+          "value": "es",
+          "title": "西班牙文"
+        },
+        {
+          "value": "ru",
+          "title": "俄文"
+        },
+        {
+          "value": "pt",
+          "title": "葡萄牙文"
+        },
+        {
+          "value": "it",
+          "title": "意大利文"
+        }
+      ]
+    },
+    {
+      "name": "speech_rate",
+      "type": "dropdown",
+      "required": false,
+      "title": "本地朗读速度",
+      "default": "170",
+      "description": "使用 macOS 内置语音，不消耗有道语音服务额度。",
+      "data": [
+        {
+          "value": "140",
+          "title": "慢速"
+        },
+        {
+          "value": "170",
+          "title": "正常"
+        },
+        {
+          "value": "210",
+          "title": "快速"
+        }
+      ]
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.38.2",
+    "node-fetch": "^3.2.9"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.1",
+    "@types/react": "^18.0.15",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "typescript": "^4.7.4",
+    "prettier": "^2.5.1"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "publish": "ray publish",
+    "test": "tsc -p tsconfig.test.json && node --test .test-dist/tests/core.test.js .test-dist/tests/speech.test.js",
+    "test:speech": "tsc -p tsconfig.test.json && node .test-dist/tests/speech-smoke.js"
+  },
+  "platforms": [
+    "macOS"
+  ]
+}

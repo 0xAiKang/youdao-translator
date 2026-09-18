@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/core.ts", "src/speech.ts", "tests/**/*.ts"],
+  "compilerOptions": {
+    "outDir": ".test-dist",
+    "rootDir": ".",
+    "types": ["node"],
+    "declaration": false
+  }
+}
